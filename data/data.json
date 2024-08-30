@@ -7,7 +7,7 @@
       "possessions": [
         {
           "possesseur": { "nom": "John Doe" },
-          "libelle": "MacBook Pro",
+          "libelle": "MacBook",
           "valeur": 4000000,
           "dateDebut": "2023-12-25T00:00:00.000Z",
           "dateFin": null,
@@ -35,7 +35,7 @@
         },
         {
           "possesseur": { "nom": "John Doe" },
-          "libelle": "MacBook Pro",
+          "libelle": "MacBook",
           "valeur": 4000000,
           "dateDebut": "2023-12-25T00:00:00.000Z",
           "dateFin": null,
@@ -60,6 +60,22 @@
           "tauxAmortissement": null,
           "jour": 2,
           "valeurConstante": -300000
+        },
+        {
+          "possesseur": { "nom": "John Doe" },
+          "libelle": "Maison",
+          "valeur": "1000000000",
+          "dateDebut": "2024-05-01T00:00:00.000Z",
+          "dateFin": null,
+          "tauxAmortissement": "2"
+        },
+        {
+          "possesseur": { "nom": "John Doe" },
+          "libelle": "Chargeur",
+          "valeur": "15000",
+          "dateDebut": "2024-06-06T00:00:00.000Z",
+          "dateFin": null,
+          "tauxAmortissement": "30"
         }
       ]
     }

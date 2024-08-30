@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const dataFilePath = path.join(__dirname, '../../data/data.json');
 
-// Récupérer la liste des possessions (libelle, valeur, date de début, date de fin, amortissement, date actuelle)
+// Récupérer la liste des possessions
 export const getPossessions = async (req, res) => {
     const result = await readFile(dataFilePath);
     if (result.status === "OK") {
@@ -63,14 +63,13 @@ export const getPossessions = async (req, res) => {
 };
 
 // Créer une nouvelle possession
-export const createPossession = async (req, res) => {
+export const createPossession = async (req, res) => {    
     const result = await readFile(dataFilePath);
     if (result.status === "OK") {
-        const personneData = result.data.find(
-            (item) => item.model === "Personne"
-        ).data;
+        const personneData = result.data.find((item) => item.model === "Personne").data;
         const personne = new Personne(personneData.nom);
         const patrimoineData = result.data.find(entry => entry.model === "Patrimoine");
+
         if (patrimoineData) {
             const possessions = patrimoineData.data.possessions.map((possessionData) => {
                 if (possessionData.jour) {
@@ -79,9 +78,7 @@ export const createPossession = async (req, res) => {
                         possessionData.libelle,
                         possessionData.valeurConstante,
                         new Date(possessionData.dateDebut),
-                        possessionData.dateFin
-                            ? new Date(possessionData.dateFin)
-                            : null,
+                        possessionData.dateFin ? new Date(possessionData.dateFin) : null,
                         possessionData.tauxAmortissement,
                         possessionData.jour
                     );
@@ -91,32 +88,28 @@ export const createPossession = async (req, res) => {
                     possessionData.libelle,
                     possessionData.valeur,
                     new Date(possessionData.dateDebut),
-                    possessionData.dateFin
-                        ? new Date(possessionData.dateFin)
-                        : null,
+                    possessionData.dateFin ? new Date(possessionData.dateFin) : null,
                     possessionData.tauxAmortissement
                 );
-            }
-            );
-            const patrimoine = new Patrimoine(
-                personne,
-                possessions
-            )
-            const possessionBody = req.body
-            let newPossession
-            if (req.body.jour) {
+            });
+
+            const patrimoine = new Patrimoine(personne, possessions);
+            const possessionBody = req.body;
+
+            let newPossession;
+            if (possessionBody.jour) {
                 newPossession = new Flux(
-                    possessionBody.possesseur,
+                    personne,
                     possessionBody.libelle,
                     possessionBody.valeurConstante,
                     new Date(possessionBody.dateDebut),
                     possessionBody.dateFin ? new Date(possessionBody.dateFin) : null,
                     possessionBody.tauxAmortissement,
                     possessionBody.jour
-                )
+                );
             } else {
                 newPossession = new Possession(
-                    possessionBody.possesseur,
+                    personne,
                     possessionBody.libelle,
                     possessionBody.valeur,
                     new Date(possessionBody.dateDebut),
@@ -124,6 +117,7 @@ export const createPossession = async (req, res) => {
                     possessionBody.tauxAmortissement
                 );
             }
+            
             patrimoine.addPossession(newPossession);
 
             result.data = result.data.map(entry =>
@@ -137,20 +131,23 @@ export const createPossession = async (req, res) => {
             if (writeResult.status === "OK") {
                 res.status(201).json(newPossession);
             } else {
+                console.error("Erreur lors de l'écriture dans le fichier :", writeResult.error);
                 res.status(500).json(writeResult.error);
             }
         } else {
             res.status(404).json({ message: "Patrimoine non trouvé" });
         }
     } else {
+        console.error("Erreur lors de la lecture du fichier :", result.error);
         res.status(500).json(result.error);
     }
 };
 
+
 // Mettre à jour une possession par son libelle
 export const updatePossession = async (req, res) => {
     const { libelle } = req.params;
-    const { dateFin, newLibelle } = req.body; //il faut ajouter un newLibelle et y mettre la nouvelle valeur de libelle
+    const { dateFin, newLibelle } = req.body;
     const result = await readFile(dataFilePath);
 
     if (result.status === "OK") {
