@@ -12,7 +12,6 @@ function PatrimoinePage() {
   const [valuePatrimoine, setValuePatrimoine] = useState(0);
   const [dateSelected, setDateSelected ] = useState(null)
 
-  
 
   const handleValidateRange = async () => {
     const response = await fetch("http://localhost:3000/patrimoine/range", {
@@ -31,24 +30,9 @@ function PatrimoinePage() {
   };
 
   return (
-    <div className="container">   
-      <div class="row py-3">
-        <div className="col-md-8">
-          <h4>Graphique</h4>
-          <DateRangeSelector 
-            dateDebut={dateDebut} 
-            setDateDebut={setDateDebut} 
-            dateFin={dateFin} 
-            setDateFin={setDateFin} 
-            jour={jour} 
-            setJour={setJour} 
-            handleValidateRange={handleValidateRange} 
-          />
-          {chartData && <ChartComponent data={chartData} x={parseInt(jour)}/>}
-        </div>
-
-        <div className="col-md-4">
-          <h4>Calcul de la valeur totale du Patrimoine</h4>
+    <div className="py-3">   
+        <div className="custom-container m-5 p-3">
+          <h4> <i class="fa-solid fa-hand-holding-dollar"></i> Calculer la valeur totale du Patrimoine</h4>
           <ValueGetter 
             dateSelected = {dateSelected}
             setDateSelected = {setDateSelected}
@@ -56,7 +40,26 @@ function PatrimoinePage() {
             valuePatrimoine = {valuePatrimoine}
           />
         </div>
-      </div> 
+
+        <div className="custom-container m-5 p-3">
+          <h4> <i class="fa-solid fa-chart-line"></i> Graphique</h4>
+          <div className="row">
+            <div className="col-md-6">
+            <DateRangeSelector 
+              dateDebut={dateDebut} 
+              setDateDebut={setDateDebut} 
+              dateFin={dateFin} 
+              setDateFin={setDateFin} 
+              jour={jour} 
+              setJour={setJour} 
+              handleValidateRange={handleValidateRange} 
+            />
+            </div>
+            <div className="col-md-6 mt-4">
+            {chartData && <ChartComponent data={chartData} x={parseInt(jour)}/>}
+            </div>
+          </div>
+        </div>
     </div>
   );
 }

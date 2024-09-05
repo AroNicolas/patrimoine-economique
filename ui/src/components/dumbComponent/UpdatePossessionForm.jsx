@@ -2,10 +2,10 @@ import React from 'react';
 
 const UpdatePossessionForm = ({ libelle, dateFin, setDateFin, newLibelle, setNewLibelle, handleSubmit }) => {
   return (
-    <div className="container">
-      <h2>Mettre à jour la Possession: {libelle}</h2>
+    <div className="custom-container mt-5 px-3 container-fluid d-flex flex-column justify-content-center" style={{width: "70vh", height:"70vh"} }>
+      <h2> <i class="fa-solid fa-folder-open"></i> Mettre à jour la possession: <br /> <br /> <span className="text-danger"> <i className="fas fa-tag"></i>  {libelle} </span> <br /> <br /> </h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="mb-5 gap-3">
           <label>Nouveau nom du libellé</label>
           <input 
             type="text" 

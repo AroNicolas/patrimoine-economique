@@ -19,10 +19,7 @@ function PossessionList({ possessions, refetchPossessions }) {
 
   return (
     <div className="container">
-      <h2>Liste des Possessions</h2>
-      <Link to="/possession/create" className="btn btn-primary">
-        Créer une Possession
-      </Link>
+      <h2 className="p-4"> <i class="fa-solid fa-table-list"></i> Liste des Possessions</h2>
       <div className="table-responsive">
       <table className="table mt-3">
         <thead>
@@ -41,9 +38,9 @@ function PossessionList({ possessions, refetchPossessions }) {
             <tr key={index}>
               <td>{possession.libelle}</td>
               <td>
-                {possession.valeur
-                    ? possession.valeur + " Ar"
-                    : possession.valeurConstante + " Ar"}
+                {possession.valeur 
+                  ? `${possession.valeur.toLocaleString()} Ar` 
+                  : `${possession.valeurConstante.toLocaleString()} Ar`}
                 </td>
               <td>
                 {possession.dateDebut
@@ -60,24 +57,27 @@ function PossessionList({ possessions, refetchPossessions }) {
                   ? possession.tauxAmortissement+" %"
                   : "___"}
               </td>
-              <td>{possession.valeurActuelle+ " Ar"}</td>
+              <td>{`${Number(possession.valeurActuelle).toLocaleString()} Ar`}</td>
               <td>
                 <Link
                   to={`/possession/${possession.libelle}/update`}
                   className="btn btn-primary"
                 >
-                  Modifier
+                  <i class="fa-solid fa-pen"></i>
                 </Link>
                 <button className="btn btn-danger ms-2"
                   onClick={() => closePossession(possession.libelle)}
                 >
-                  Clôturer</button>
+                  <i class="fa-solid fa-ban"></i></button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       </div>
+      <Link to="/possession/create" className="btn btn-primary">
+        Créer une Possession
+      </Link>
     </div>
   );
 }

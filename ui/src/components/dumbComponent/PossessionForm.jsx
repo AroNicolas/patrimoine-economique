@@ -2,8 +2,8 @@ import React from "react";
 
 function PossessionForm({ libelle, valeur, dateDebut, tauxAmortissement, onLibelleChange, onValeurChange, onDateDebutChange, onTauxChange, onSubmit }) {
   return (
-    <div className="container">
-      <h2>Créer une Possession</h2>
+    <div className="custom-container mt-5 p-3 container-fluid d-flex flex-column justify-content-center" style={{width: "70vh"}}>
+      <h2> <i className="fas fa-edit"></i> Créer une Possession</h2>
       <form onSubmit={onSubmit}>
         <div className="m-3">
           <label>Libellé</label>

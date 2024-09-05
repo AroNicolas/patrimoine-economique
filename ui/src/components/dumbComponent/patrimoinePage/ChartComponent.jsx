@@ -39,7 +39,7 @@ function ChartComponent({ data, x }) {
           "rgba(255, 255, 255, 0.6)",
         ],
         borderColor: "blue",
-        borderWidth: 1,
+        borderWidth: 2,
         pointBackgroundColor: "blue",
       },
     ],
@@ -63,7 +63,7 @@ function ChartComponent({ data, x }) {
     },
   };
   return (
-    <div style={{height: "60vh" }}>
+    <div style={{height: "60vh"}}>
       <Line data={data} options={options} />
     </div>
   );
