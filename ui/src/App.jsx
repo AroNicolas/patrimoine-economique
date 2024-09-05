@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import PatrimoinePage from "./pages/Patrimoine";
-import PossessionListPage from "./pages/ListPossession";
-import CreatePossessionPage from "./pages/CreatePossession";
-import UpdatePossessionPage from "./pages/UpdatePossession";
+import PatrimoinePage from "./components/smartComponent/Patrimoine";
+import PossessionListPage from "./components/smartComponent/ListPossession";
+import CreatePossessionPage from "./components/smartComponent/CreatePossession";
+import UpdatePossessionPage from "./components/smartComponent/UpdatePossession";
 import "./App.css";
 
 function App() {

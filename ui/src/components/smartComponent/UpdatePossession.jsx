@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import UpdatePossessionForm from "../components/UpdatePossessionForm";
+import UpdatePossessionForm from "../dumbComponent/UpdatePossessionForm";
 
 const UpdatePossessionPage = () => {
   const { libelle } = useParams();

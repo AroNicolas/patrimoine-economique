@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import ChartComponent from "../components/pagePatrimoine/ChartComponent";
-import DateRangeSelector from "../components/pagePatrimoine/DateRangeSelector";
-import ValueGetter from "../components/pagePatrimoine/ValueGetter";
+import ChartComponent from "../dumbComponent/patrimoinePage/ChartComponent";
+import DateRangeSelector from "../dumbComponent/patrimoinePage/DateRangeSelector";
+import ValueGetter from "../dumbComponent/patrimoinePage/ValueGetter";
 
 function PatrimoinePage() {
   const [dateDebut, setDateDebut] = useState(null);
