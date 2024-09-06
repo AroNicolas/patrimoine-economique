@@ -13,7 +13,7 @@ function CreatePossessionPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:3000/possession", {
+    const response = await fetch("https://patrimoine-economique-backend-rzko.onrender.com/possession", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ libelle, valeur, dateDebut, tauxAmortissement }),

@@ -14,7 +14,7 @@ function PatrimoinePage() {
 
 
   const handleValidateRange = async () => {
-    const response = await fetch("http://localhost:3000/patrimoine/range", {
+    const response = await fetch("https://patrimoine-economique-backend-rzko.onrender.com/patrimoine/range", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ type: "month", dateDebut, dateFin, jour}),
@@ -24,7 +24,7 @@ function PatrimoinePage() {
   };
 
   const handleGetValeur = async (date) => {
-    const response = await fetch(`http://localhost:3000/patrimoine/${date.toISOString()}`);
+    const response = await fetch(`https://patrimoine-economique-backend-rzko.onrender.com/patrimoine/${date.toISOString()}`);
     const data = await response.json();
     setValuePatrimoine(data.valeur);
   };

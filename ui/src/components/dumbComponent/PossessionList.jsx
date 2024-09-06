@@ -6,7 +6,7 @@ function PossessionList({ possessions, refetchPossessions }) {
 
   const closePossession = async (libelle) => {
     try {
-      const response = await fetch(`http://localhost:3000/possession/${libelle}/close`, {
+      const response = await fetch(`https://patrimoine-economique-backend-rzko.onrender.com/possession/${libelle}/close`, {
         method: "Post",
         headers: { "Content-Type": "application/json" },
       });
