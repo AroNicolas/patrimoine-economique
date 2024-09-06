@@ -10,6 +10,7 @@ function PossessionListPage() {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
+      console.log(response);    
       const data = await response.json();
       setPossessions(data);
     } catch (error) {
