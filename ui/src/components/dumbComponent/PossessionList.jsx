@@ -39,8 +39,8 @@ function PossessionList({ possessions, refetchPossessions }) {
               <td>{possession.libelle}</td>
               <td>
                 {possession.valeur 
-                  ? `${possession.valeur.toLocaleString()} Ar` 
-                  : `${possession.valeurConstante.toLocaleString()} Ar`}
+                  ? `${Number(possession.valeur).toLocaleString()} Ar` 
+                  : `${Number(possession.valeurConstante).toLocaleString()} Ar`}  
                 </td>
               <td>
                 {possession.dateDebut
